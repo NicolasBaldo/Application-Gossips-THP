@@ -1,0 +1,67 @@
+<style> 
+
+/* styles.css */
+
+
+.custom-form {
+  width: 50%; /* Ajustez la largeur selon vos préférences */
+  margin: 0 auto; /* Centrer horizontalement */
+  margin-top: 50px; 
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.form-label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #F63005;
+}
+
+.form-input {
+  width: calc(100% - 22px); /* Ajustez la largeur du champ de texte */
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.submit-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+</style> 
+<body class="new-page">
+
+<%= form_tag url_for(action: 'create'), method: "post", class: "custom-form" do %>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  
+  <%= label_tag 'author', 'Quel est ton nom?', class: "form-label" %>
+  <%= text_field_tag 'author', nil, class: "form-input", placeholder: "Entrez votre nom"%>
+  <br>
+  
+  <%= label_tag 'title', 'Quel est le titre de ton Gossip?', class: "form-label" %>
+  <%= text_field_tag 'title', nil, class: "form-input", placeholder: "Entrez le titre"%>
+  <br>
+  
+  <%= label_tag 'content', 'Que vas tu balancer?', class: "form-label" %>
+  <%= text_field_tag 'content', nil, class: "form-input", placeholder: "Entrez le contenu"%>
+  <br>
+  
+  <%= submit_tag "Créer un Gossip!", class: "submit-button" %>
+  
+<% end %>
+

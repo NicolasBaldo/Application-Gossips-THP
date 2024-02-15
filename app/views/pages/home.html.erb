@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wellcome !</title>
+
+  <style>
+    .card-container {
+      transition: transform 1s ease-in-out;
+    }
+
+    .row {
+      overflow: hidden;
+    }
+
+    
+  </style>
+
+  <div class="center-button">
+  <button type="button" class="btn btn-primary btn-lg mb-2 custom-button-color">
+    <a href="<%= new_gossip_path %>" class="custom-link">BALANCE TON GOSSIP !</a>
+  </button>
+</div>
+
+
+ 
+<div class="container">
+  <div class="row">
+    <% @gossips.each do |gossip| %>
+      <div class="col-md-4 card-container">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title"><%= gossip.title %></h5>
+            <p class="card-text">Par : <%= gossip.user.first_name %></p>
+            <p class="card-text"><%= gossip.content %></p>
+            <%= link_to "Voir plus", gossip_path(gossip), class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var cards = document.querySelectorAll('.card-container');
+
+    function moveCards() {
+      var firstCard = cards[0];
+      var cardWidth = firstCard.offsetWidth;
+
+      firstCard.style.transform = 'translateX(-' + cardWidth + 'px)';
+
+      setTimeout(function() {
+        firstCard.style.transition = 'none';
+        firstCard.style.transform = 'translateX(100%)';
+
+        setTimeout(function() {
+          firstCard.style.transition = '';
+          firstCard.style.transform = '';
+
+          var lastCard = firstCard.parentElement.lastElementChild;
+          firstCard.parentElement.insertBefore(lastCard, firstCard.parentElement.firstElementChild);
+        }, 100);
+      }, 1000);
+    }
+
+    setInterval(moveCards, 5000); // Changez 5000 à la durée que vous souhaitez entre chaque défilement (en millisecondes)
+  });
+</script>
+
+
+
+
+
+</body>
+</html>

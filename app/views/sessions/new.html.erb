@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page de Connexion</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: 
+    }
+
+    .cardb {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+      width: 50%;
+      max-width: 500px; 
+    }
+
+    .card form {
+      margin-top: 20px;
+    }
+
+    @font-face {
+      font-family: "Namecat";
+      src: url('Namecat.ttf') format('truetype');
+    }
+
+    h1 {
+      font-family: "Namecat", sans-serif;
+      text-align: center;
+      font-size: 2.5em;
+      margin-top: 0; 
+    }
+  </style>
+</head>
+<body class="session-page">
+<h1>THE GOSSIP PROJECT</h1>
+<div class="cardb">
+  <h2>Connexion</h2>
+  <%= form_with(url: login_path, method: "post") do |form| %>
+    <div>
+      <%= form.label :email %>
+      <%= form.email_field :email %>
+    </div>
+  
+    <div>
+      <%= form.label :password %>
+      <%= form.password_field :password %>
+    </div>
+    <div>
+      <%= form.submit "Se connecter" %>
+    </div>
+  <% end %>
+  <br>
+  <br>
+  <br>
+  <br>
+  <h2>Pas encore inscrit? <%= link_to "S'inscrire", signup_path %></h2>
+</div>
+</body>
+</html>

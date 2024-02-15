@@ -1,0 +1,85 @@
+body {
+  background-image: url('bckk.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+body.team-page {
+  background-image: url('backt.jpeg');
+  /* Autres styles spécifiques à la page "Team" */
+}
+
+body.contact-page {
+  background-image: url('ctc.webp');
+}
+body.new-page {
+  background-image: url('gsvw.jpeg');
+}
+body.show-page {
+  background-image: url('gsvw.jpeg');
+}
+body.session-page {
+  background-image: url('gsi.webp');
+}
+  
+]
+
+@font-face {
+ font-family: "NTS";
+    src: url('NTS.woff2') format('woff2');
+}
+
+
+.card {
+  background-image: url('ssp.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 200px; 
+  padding-bottom: 10px; 
+  font-family: "NTS", sans-serif; 
+}
+
+
+.card-body {
+  padding-bottom: 10px; 
+  color: rgb(255, 255, 255); 
+}
+
+.card-container {
+  margin-top: 25px; /* Ajoute un espacement en haut des cartes */
+}
+
+.card-container:hover {
+  transform: scale(1.07); /* Zoom sur l'échelle 1.05 */
+  transition: transform 0.3s ease; /* Transition fluide */
+}
+
+@font-face {
+  font-family: "Namecat";
+  src: url('Namecat.ttf') format('truetype');
+
+}
+
+
+.custom-navbar-bg {
+  background-color: #e4a7db; 
+  font-family: "Namecat", sans-serif; 
+  font-size: larger; 
+}
+
+a.custom-link {
+  text-decoration: none; /* Retire le soulignement */
+  color: inherit; /* Utilise la couleur par défaut du texte */
+  outline: none; /* Retire le contour lorsqu'il est focus */
+}
+
+.center-button {
+  text-align: center;
+  margin-top: 10px;
+  font-family: "Namecat", sans-serif; 
+}
+.custom-button-color {
+  color: #000000; /* couleur du texte */
+  background-color: #ffa600; /* couleur de fond */
+  border-color: #e764b7; /* couleur de la bordure */
+}

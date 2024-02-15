@@ -1,0 +1,124 @@
+<style>
+  .gossip-container {
+    background-color: rgba(240, 240, 240, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .comment-form-container {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  .comment-form {
+    background-color: rgba(240, 240, 240, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .comment-form label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .comment-form textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .comment-form input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .comment-form input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+  .comment-list {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .comment-list li {
+    background-color: rgba(240, 240, 240, 0.8);
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .comment-bubble {
+    position: relative;
+    display: inline-block;
+    max-width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    cursor: move;
+  }
+</style>
+
+<body class="show-page">
+
+<div class="gossip-container">
+  <h1><%= @gossip.title %></h1>
+  <p>Par : <%= @gossip.user.first_name %></p>
+  <p><%= @gossip.content %></p>
+  <p>Date de création : <%= @gossip.created_at %></p>
+  <p>Par : <%= link_to @gossip.user.first_name, user_path(@gossip.user) %></p>
+</div>
+
+
+
+<div class="comment-form-container">
+  <div class="comment-form">
+    <h2>Ajouter un commentaire :</h2>
+    <form action="/gossips/<%= @gossip.id %>/comments" method="post">
+      <label for="author">Auteur:</label>
+      <input type="text" name="author" id="author">
+
+      <label for="content">Contenu:</label>
+      <textarea name="content" id="content"></textarea>
+
+      <input type="submit" value="Ajouter le commentaire">
+    </form>
+  </div>
+</div>
+
+<h2>Commentaires :</h2>
+<% if @comments.present? %>
+  <ul class="comment-list">
+    <% @comments.each do |comment| %>
+      <li class="comment-bubble">
+        <strong><%= comment.user.first_name %>:</strong>
+        <%= comment.content %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Aucun commentaire trouvé.</p>
+<% end %>
+
+<% if current_user == @gossip.user %>
+  <%= link_to "Editer", edit_gossip_path(@gossip) %>
+<% end %>
+
+<%= button_to 'Like', like_gossip_path(@gossip), method: :post %>
+<%= button_to 'Unlike', unlike_gossip_path(@gossip), method: :delete %>
+<%= @gossip.likes_count %> likes
