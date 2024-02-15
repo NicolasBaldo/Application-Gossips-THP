@@ -6,5 +6,7 @@ class CreateLikes < ActiveRecord::Migration[7.1]
 
       t.timestamps
     end
+
+    add_column :gossips, :likes_count, :integer, default: 0
   end
 end

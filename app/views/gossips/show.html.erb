@@ -72,6 +72,30 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     cursor: move;
   }
+ 
+  .like-button, .unlike-button {
+      border-radius: 50%;
+      padding: 10px 20px;
+      font-size: 16px;
+  }
+  
+  .like-button {
+      background-color: #3498db; /* Couleur du bouton "Like" */
+      color: #fff; /* Couleur du texte */
+  }
+  
+  .unlike-button {
+      background-color: #e74c3c; /* Couleur du bouton "Unlike" */
+      color: #fff; /* Couleur du texte */
+  }
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* ou toute autre hauteur que vous souhaitez */
+}
+  
+
 </style>
 
 <body class="show-page">
@@ -119,6 +143,10 @@
   <%= link_to "Editer", edit_gossip_path(@gossip) %>
 <% end %>
 
-<%= button_to 'Like', like_gossip_path(@gossip), method: :post %>
-<%= button_to 'Unlike', unlike_gossip_path(@gossip), method: :delete %>
-<%= @gossip.likes_count %> likes
+<div class="button-container">
+<%= button_to 'Like', like_gossip_path(@gossip), method: :post, class: 'like-button', params: { gossip_id: @gossip.id } %>
+
+  <%= button_to 'Unlike', unlike_gossip_path(@gossip), method: :delete, class: 'unlike-button' %>
+  <span id="like-count"><%= @gossip.likes_count %></span>
+</div>
+

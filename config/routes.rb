@@ -39,14 +39,14 @@ Rails.application.routes.draw do
   get 'welcome/:first_name', to: 'pages#welcome', as: 'welcome'
   get 'home', to: 'pages#home'
   get '/signup', to: 'users#new'
-
   resources :gossips, only: [:show, :new, :create] do
     resources :comments, only: [:create, :destroy]
     member do
-      post 'like'
-      delete 'unlike'
+      post 'like', to: 'likes#create' 
+      delete 'unlike', to: 'likes#destroy'
     end
   end
+  
   
   
   resources :users
